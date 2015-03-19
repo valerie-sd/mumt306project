@@ -1,4 +1,4 @@
-# mumt306project
+# mumt 306 project
 **Algorithmic music generation project, uploaded after completion**
 [also hosted here](http://cs.mcgill.ca/~vsaund/mumt306/project.html)
 
