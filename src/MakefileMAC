@@ -1,0 +1,29 @@
+### Example Makefile for MUMT-306 Homework assignments on OS-X systems
+
+PROGRAMS = test out
+RM = /bin/rm
+CC       = g++
+DEFS     = -D__MACOSX_CORE__ -D__LITTLE_ENDIAN__
+CFLAGS   = -O2 -Wall -I boost_1_57_0
+LIBRARY  = -lm -framework CoreMIDI -framework CoreFoundation -framework CoreAudio
+
+all : $(PROGRAMS)
+
+clean : 
+	-rm -f *~ *.o
+	-rm $(PROGRAMS)
+
+strip : 
+	strip $(PROGRAMS)
+
+## Include all source files necessary for a program in the dependencies and compiler statements below
+##test: project_test.cpp RtMidi.o
+	##$(CC) $(CFLAGS) $(DEFS) -o test project_test.cpp RtMidi.o $(LIBRARY)
+
+out: version2.cpp RtMidi.o
+	$(CC) $(CFLAGS) $(DEFS) -o out version2.cpp RtMidi.o $(LIBRARY) \
+	~/Documents/MUMT306/project/boost_1_57_0/stage/lib/libboost_thread.a \
+	~/Documents/MUMT306/project/boost_1_57_0/stage/lib/libboost_system.a
+
+RtMidi.o: RtMidi.cpp RtMidi.h
+	$(CC) $(CFLAGS) $(DEFS) -c RtMidi.cpp -o RtMidi.o
